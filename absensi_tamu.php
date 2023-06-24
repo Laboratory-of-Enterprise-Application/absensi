@@ -7,11 +7,12 @@ include('koneksi.php');
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Absensi Masuk</title>
+  <title>Absensi Tamu</title>
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/login.css">
+  <link rel="icon" href="assets/images/logoleaa.png">
 </head>
 <body>
   <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
@@ -26,7 +27,7 @@ include('koneksi.php');
               <div class="brand-wrapper">
                 <img src="assets/images/logolea.png" alt="logo" class="logo">
               </div>
-              <p class="login-card-description">Absensi Masuk</p>
+              <p class="login-card-description">Absensi Tamu</p>
               <form action="" method="post">
                   <div class="form-group">
                     <label for="nama" class="sr-only">Nama</label>
@@ -35,6 +36,10 @@ include('koneksi.php');
                   <div class="form-group mb-4">
                     <label for="nim" class="sr-only">NIM</label>
                     <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM">
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="nim" class="sr-only">Keperluan</label>
+                    <input type="text" name="keperluan" id="keperluan" class="form-control" placeholder="Keperluan">
                   </div>
                   <button type="submit" class="btn btn-block login-btn mb-4" name="submit">Submit</button>
                 </form>
@@ -54,12 +59,12 @@ include('koneksi.php');
   if (isset($_POST['submit'])) {
       $nama = $_POST['nama'];
       $nim = $_POST['nim'];
-      $jenis = 'masuk';
+      $keperluan = $_POST['keperluan'];
       date_default_timezone_set('Asia/Jakarta');
       $date = date('Y-m-d');
       $time = date('H:i:s');
             
-      $result = mysqli_query($db,"INSERT INTO absensi VALUES('','$nama','$nim','$jenis','$date','$time')") or die(mysqli_error($db));   
+      $result = mysqli_query($db,"INSERT INTO tamu VALUES('','$nama','$nim','$keperluan','$date','$time')") or die(mysqli_error($db));   
             if ($result > 0) {
                 echo "
                 <script>
@@ -71,7 +76,7 @@ include('koneksi.php');
                 echo "
                 <script>
                 alert('Data gagal ditambahkan!');
-                document.location.href = 'absensimasuk.php';
+                document.location.href = 'absensi_tamu.php';
                 </script>
                 ";
             }

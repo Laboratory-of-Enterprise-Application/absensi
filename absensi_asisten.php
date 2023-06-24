@@ -7,11 +7,12 @@ include('koneksi.php');
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Absensi Keluar</title>
+  <title>Absensi Asisten</title>
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/login.css">
+  <link rel="icon" href="assets/images/logoleaa.png">
 </head>
 <body>
   <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
@@ -26,7 +27,7 @@ include('koneksi.php');
               <div class="brand-wrapper">
                 <img src="assets/images/logolea.png" alt="logo" class="logo">
               </div>
-              <p class="login-card-description">Absensi Keluar</p>
+              <p class="login-card-description">Absensi Asisten</p>
               <form action="" method="post">
                   <div class="form-group">
                     <label for="nama" class="sr-only">Nama</label>
@@ -35,6 +36,14 @@ include('koneksi.php');
                   <div class="form-group mb-4">
                     <label for="nim" class="sr-only">NIM</label>
                     <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM">
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="absensi" class="sr-only">Absensi</label>
+                    <select name="absensi" id="absensi" class="form-control">
+                      <option selected>Pilih Jenis Absensi</option>
+                      <option value="masuk">Absensi Masuk</option>
+                      <option value="keluar">Absensi Keluar</option>
+                    </select>
                   </div>
                   <button type="submit" class="btn btn-block login-btn mb-4" name="submit">Submit</button>
                 </form>
@@ -54,12 +63,12 @@ include('koneksi.php');
   if (isset($_POST['submit'])) {
       $nama = $_POST['nama'];
       $nim = $_POST['nim'];
-      $jenis = 'keluar';
+      $absensi = $_POST['absensi'];
       date_default_timezone_set('Asia/Jakarta');
       $date = date('Y-m-d');
       $time = date('H:i:s');
             
-      $result = mysqli_query($db,"INSERT INTO absensi VALUES('','$nama','$nim','$jenis','$date','$time')") or die(mysqli_error($db));   
+      $result = mysqli_query($db,"INSERT INTO absensi VALUES('','$nama','$nim','$absensi','$date','$time')") or die(mysqli_error($db));   
             if ($result > 0) {
                 echo "
                 <script>
@@ -71,7 +80,7 @@ include('koneksi.php');
                 echo "
                 <script>
                 alert('Data gagal ditambahkan!');
-                document.location.href = 'absensimasuk.php';
+                document.location.href = 'absensi_asisten.php';
                 </script>
                 ";
             }
@@ -80,6 +89,7 @@ include('koneksi.php');
 
     </div>
   </main>
+  
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
