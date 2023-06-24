@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Jun 2023 pada 15.56
+-- Waktu pembuatan: 24 Jun 2023 pada 07.12
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.0.25
 
@@ -36,6 +36,21 @@ CREATE TABLE `absensi` (
   `time` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tamu`
+--
+
+CREATE TABLE `tamu` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `nim` varchar(20) NOT NULL,
+  `keperluan` varchar(50) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -47,6 +62,12 @@ ALTER TABLE `absensi`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `tamu`
+--
+ALTER TABLE `tamu`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -54,7 +75,13 @@ ALTER TABLE `absensi`
 -- AUTO_INCREMENT untuk tabel `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tamu`
+--
+ALTER TABLE `tamu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
